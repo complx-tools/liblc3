@@ -61,6 +61,11 @@ if(CMAKE_HOST_WIN32)
     #include_directories("C:/msys/1.0/local/include/wx-3.0")
 endif(CMAKE_HOST_WIN32)
 
+file(
+    GLOB 
+    SRC_FILES ${PROJECT_SOURCE_DIR}/source/*.cpp
+)
+
 add_library(
     lc3
     SHARED
@@ -70,8 +75,8 @@ target_sources(
     lc3
     PUBLIC
         FILE_SET HEADERS BASE_DIRS include
-    PUBLIC
-        FILE_SET SOURCES BASE_DIRS source
+    PRIVATE
+        ${SRC_FILES}
 )
 
 target_link_libraries(
