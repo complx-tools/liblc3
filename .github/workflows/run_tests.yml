@@ -6,11 +6,13 @@ on:
       - 'include/**'
       - 'source/**'
       - 'tests/**'
+      - 'CMakeLists.txt'
   pull_request:
     paths:
       - 'include/**'
       - 'source/**'
       - 'tests/**'
+      - 'CMakeLists.txt'
   workflow_dispatch:
 
 jobs:
