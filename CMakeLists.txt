@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.23)
+cmake_minimum_required(VERSION 3.5)
 # Ignore warnings about rpath behavior on OS X
 cmake_policy(SET CMP0042 NEW)
 project(liblc3 LANGUAGES CXX)
@@ -75,7 +75,9 @@ add_library(
 target_sources(
     lc3
     PUBLIC
-        FILE_SET HEADERS BASE_DIRS include FILES ${HEADER_FILES}
+        # When 3.23 is standard across ubuntu distros switch to FILE_SET
+        # FILE_SET HEADERS BASE_DIRS include FILES ${HEADER_FILES}
+        ${HEADER_FILES}
     PRIVATE
         ${SRC_FILES}
 )
@@ -97,7 +99,8 @@ install(
     EXPORT liblc3
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    FILE_SET HEADERS DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/lc3
+    # FILE_SET HEADERS DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/lc3
+    PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/lc3
 )
 
 install(
