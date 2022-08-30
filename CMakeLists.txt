@@ -4,7 +4,6 @@ cmake_policy(SET CMP0042 NEW)
 project(liblc3 LANGUAGES CXX)
 include(GNUInstallDirs)
 
-
 # Add code coverage stuff.
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
@@ -56,14 +55,16 @@ add_definitions(-DSO_SUFFIX="${CMAKE_SHARED_LIBRARY_SUFFIX}")
 if(CMAKE_HOST_WIN32)
     # Needed for htons
     set(LIBLC3_EXTRA_LIBS ws2_32)
-    # Windows doesn't set include directories correctly?
-    #include_directories("C:/msys/1.0/local/lib/wx/include/msw-unicode-3.0")
-    #include_directories("C:/msys/1.0/local/include/wx-3.0")
 endif(CMAKE_HOST_WIN32)
 
 file(
     GLOB 
     SRC_FILES ${PROJECT_SOURCE_DIR}/source/*.cpp
+)
+
+file(
+    GLOB 
+    HEADER_FILES ${PROJECT_SOURCE_DIR}/include/*.hpp
 )
 
 add_library(
@@ -74,7 +75,7 @@ add_library(
 target_sources(
     lc3
     PUBLIC
-        FILE_SET HEADERS BASE_DIRS include
+        FILE_SET HEADERS BASE_DIRS include FILES ${HEADER_FILES}
     PRIVATE
         ${SRC_FILES}
 )
@@ -88,7 +89,7 @@ target_link_libraries(
 export(
     TARGETS lc3
     NAMESPACE liblc3:: 
-    FILE ${PROJECT_BINARY_DIR}/cmake/liblc3/liblc3-export.cmake
+    FILE ${PROJECT_BINARY_DIR}/cmake/lc3/liblc3-export.cmake
 )
 
 install(
@@ -96,13 +97,13 @@ install(
     EXPORT liblc3
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    FILE_SET HEADERS DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/liblc3
+    FILE_SET HEADERS DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/lc3
 )
 
 install(
-    EXPORT lc3
+    EXPORT liblc3
     NAMESPACE   liblc3::
-    DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/liblc3/cmake
+    DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/lc3/cmake
 )
 
 if(ENABLE_TESTS)
