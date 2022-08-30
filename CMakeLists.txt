@@ -85,7 +85,11 @@ target_link_libraries(
     ${LIBLC3_EXTRA_LIBS}
 )
 
-export(TARGETS lc3 NAMESPACE liblc3:: FILE ${PROJECT_BINARY_DIR}/cmake/liblc3/liblc3-export.cmake)
+export(
+    TARGETS lc3
+    NAMESPACE liblc3:: 
+    FILE ${PROJECT_BINARY_DIR}/cmake/liblc3/liblc3-export.cmake
+)
 
 install(
     TARGETS lc3
@@ -95,7 +99,8 @@ install(
     FILE_SET HEADERS DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/liblc3
 )
 
-install(EXPORT liblc3-export
+install(
+    EXPORT ${PROJECT_BINARY_DIR}/cmake/liblc3/liblc3-export.cmake
     NAMESPACE   liblc3::
     DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/liblc3/cmake
 )
