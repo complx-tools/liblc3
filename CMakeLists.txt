@@ -100,7 +100,7 @@ install(
 )
 
 install(
-    EXPORT ${PROJECT_BINARY_DIR}/cmake/liblc3/liblc3-export.cmake
+    EXPORT lc3
     NAMESPACE   liblc3::
     DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/liblc3/cmake
 )
