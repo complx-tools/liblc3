@@ -1,8 +1,9 @@
 cmake_minimum_required(VERSION 3.23)
 # Ignore warnings about rpath behavior on OS X
 cmake_policy(SET CMP0042 NEW)
+project(liblc3 LANGUAGES CXX)
 include(GNUInstallDirs)
-project(liblc3)
+
 
 # Add code coverage stuff.
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)

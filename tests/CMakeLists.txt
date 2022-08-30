@@ -34,8 +34,7 @@ add_test(NAME lc3_test_suite
 
 if(ENABLE_COVERAGE)
     set(CMAKE_SKIP_RPATH FALSE)
-    set(CMAKE_INSTALL_RPATH
-        ${CMAKE_BINARY_DIR}
+    set(CMAKE_INSTALL_RPATH ${CMAKE_BINARY_DIR})
 
     set(COVERAGE_EXCLUDES 'boost/*' 'c++/*' 'tests/*')
 
