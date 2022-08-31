@@ -136,7 +136,7 @@ install(
 )
 
 install(
-    EXPORT liblc3
+    EXPORT liblc3-export
     NAMESPACE   liblc3::
     DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/lc3/cmake
     COMPONENT dev
