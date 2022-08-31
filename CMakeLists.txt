@@ -76,7 +76,6 @@ set(
 
 set(
     HEADER_FILES
-    include/lc3_all.hpp
     include/lc3/ExpressionEvaluator.hpp
     include/lc3/lc3_assemble.hpp
     include/lc3/lc3.hpp
@@ -143,7 +142,11 @@ install(
 )
 
 install(
-    FILES ${HEADER_FILES} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+    FILES ${HEADER_FILES} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/lc3
+)
+
+install(
+    FILES include/lc3_all.hpp DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
 
 if(ENABLE_TESTS)

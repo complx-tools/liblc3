@@ -5,7 +5,6 @@
 #include <sstream>
 #include <vector>
 #include <lc3_all.hpp>
-#include "ExpressionEvaluator.hpp"
 
 #define IS_EXCEPTION(type) [](const LC3AssembleException& e) {/*fprintf(stderr, "Exception: %s\n", e.what().c_str()); */return e.get_id() == type;}
 

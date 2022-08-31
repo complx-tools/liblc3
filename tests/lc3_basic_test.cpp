@@ -5,7 +5,7 @@
 #include <fstream>
 #include <vector>
 #include <lc3_all.hpp>
-#include "ExpressionEvaluator.hpp"
+#include "lc3/ExpressionEvaluator.hpp"
 
 struct LC3BasicTest
 {
