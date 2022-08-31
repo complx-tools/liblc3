@@ -1,52 +1,28 @@
 #!/usr/bin/make -f
+# See debhelper(7) (uncomment to enable)
+# output every command that modifies files on the build system.
+DH_VERBOSE = 1
 
-BUILDDIR = build
-BUILDDEBUGDIR = build-debug
+# see EXAMPLES in dpkg-buildflags(1) and read /usr/share/dpkg/*
+DPKG_EXPORT_BUILDFLAGS = 1
+include /usr/share/dpkg/default.mk
 
-# firstly called by launchpad
-clean:
-	rm -rf $(BUILDDIR)
-	rm -rf $(BUILDDEBUGDIR)
+# see FEATURE AREAS in dpkg-buildflags(1)
+#export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 
-# secondly called by launchpad
-build: build-arch
+# see ENVIRONMENT in dpkg-buildflags(1)
+# package maintainers to append CFLAGS
+#export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
+# package maintainers to append LDFLAGS
+#export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
 
-build-arch:
-	mkdir $(BUILDDIR)
-	cd $(BUILDDIR);cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr ..
-	make -C $(BUILDDIR)
-	mkdir $(BUILDDEBUGDIR)
-	cd $(BUILDDEBUGDIR);cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=/usr ..
-	make -C $(BUILDDEBUGDIR)
 
-# thirdly called by launchpad
-binary: binary-arch
+# main packaging script based on dh7 syntax
+%:
+	dh $@ 
 
-binary-arch: liblc3 liblc3-dev liblc3-dbg
-
-liblc3:
-	cd $(BUILDDIR); DESTDIR=../debian/tmp COMPONENT=runtime make component_install
-	mkdir -p debian/tmp/DEBIAN
-	dpkg-gencontrol -pliblc3
-	dpkg --build debian/tmp ..
-	rm -rf debian/tmp
-
-liblc3-dev:
-	cd $(BUILDDIR); DESTDIR=../debian/tmp COMPONENT=dev make component_install
-	mkdir -p debian/tmp/DEBIAN
-	dpkg-gencontrol -pliblc3-dev
-	dpkg --build debian/tmp ..
-	rm -rf debian/tmp
-
-liblc3-dbg:
-	cd $(BUILDDEBUGDIR); DESTDIR=../debian/tmp COMPONENT=runtime make component_install
-	cd $(BUILDDEBUGDIR); DESTDIR=../debian/tmp COMPONENT=dev make component_install
-	rm -rf debian/tmp/usr/include
-	rm debian/tmp/usr/share/*/*-config.cmake
-	rm debian/tmp/usr/share/*/cmake/*/*-export.cmake
-	mkdir -p debian/tmp/DEBIAN
-	dpkg-gencontrol -pliblc3-dbg
-	dpkg --build debian/tmp ..
-	rm -rf debian/tmp
-
-.PHONY: build build-arch binary binary-arch clean liblc3 liblc3-dev liblc3-dbg
+# debmake generated override targets
+# This is example for Cmake (See http://bugs.debian.org/641051 )
+override_dh_auto_configure:
+	dh_auto_configure -- \
+	-DCMAKE_LIBRARY_PATH=$(DEB_HOST_MULTIARCH)
