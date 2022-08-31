@@ -2,8 +2,8 @@ Source: liblc3
 Section: devel
 Priority: optional
 Maintainer: Brandon Whitehead <tricksterguy87@gmail.com>
-Build-Depends: debhelper (>= 9), cmake
-Standards-Version: 3.9.6
+Build-Depends: cmake, debhelper (>=11~)
+Standards-Version: 4.1.4
 Homepage: https://github.com/complx-tools/liblc3
 Vcs-Git: https://github.com/complx-tools/liblc3/liblc3.git
 
