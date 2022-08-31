@@ -57,14 +57,38 @@ if(CMAKE_HOST_WIN32)
     set(LIBLC3_EXTRA_LIBS ws2_32)
 endif(CMAKE_HOST_WIN32)
 
-file(
-    GLOB 
-    SRC_FILES ${PROJECT_SOURCE_DIR}/source/*.cpp
+set(
+    SRC_FILES
+    source/ExpressionEvaluator.cpp
+    source/lc3_assemble.cpp
+    source/lc3.cpp
+    source/lc3_debug.cpp
+    source/lc3_execute.cpp
+    source/lc3_expressions.cpp
+    source/lc3_os.cpp
+    source/lc3_osv2.cpp
+    source/lc3_params.cpp
+    source/lc3_parser.cpp
+    source/lc3_plugin.cpp
+    source/lc3_runner.cpp
+    source/lc3_symbol.cpp
 )
 
-file(
-    GLOB 
-    HEADER_FILES ${PROJECT_SOURCE_DIR}/include/*.hpp
+set(
+    HEADER_FILES
+    include/lc3_all.hpp
+    include/lc3/ExpressionEvaluator.hpp
+    include/lc3/lc3_assemble.hpp
+    include/lc3/lc3.hpp
+    include/lc3/lc3_debug.hpp
+    include/lc3/lc3_execute.hpp
+    include/lc3/lc3_expressions.hpp
+    include/lc3/lc3_os.hpp
+    include/lc3/lc3_params.hpp
+    include/lc3/lc3_parser.hpp
+    include/lc3/lc3_plugin.hpp
+    include/lc3/lc3_runner.hpp
+    include/lc3/lc3_symbol.hpp
 )
 
 add_library(
@@ -77,9 +101,18 @@ target_sources(
     PUBLIC
         # When 3.23 is standard across ubuntu distros switch to FILE_SET
         # FILE_SET HEADERS BASE_DIRS include FILES ${HEADER_FILES}
-        ${HEADER_FILES}
     PRIVATE
         ${SRC_FILES}
+)
+
+target_include_directories(
+    lc3
+    PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/lc3
+    INTERFACE
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        $<INSTALL_INTERFACE:include>
 )
 
 target_link_libraries(
@@ -96,17 +129,21 @@ export(
 
 install(
     TARGETS lc3
-    EXPORT liblc3
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    RUNTIME DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    # FILE_SET HEADERS DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/lc3
-    PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/lc3
+    EXPORT liblc3-export COMPONENT dev
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT runtime
+    RUNTIME DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT runtime
+    # FILE_SET HEADERS DESTINATION ${CMAKE_INSTALL_INCLUDEDIR} COMPONENT dev
 )
 
 install(
     EXPORT liblc3
     NAMESPACE   liblc3::
     DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/lc3/cmake
+    COMPONENT dev
+)
+
+install(
+    FILES ${HEADER_FILES} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
 
 if(ENABLE_TESTS)

@@ -10,4 +10,17 @@ Vcs-Git: https://github.com/complx-tools/liblc3/liblc3.git
 Package: liblc3
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
+Homepage: https://github.com/complx-tools/liblc3
+Description: liblc3 is a C++ framework for running and analyzing lc3 assembly code. It supports running and backstepping through instructions along with breakpoints, watchpoints, and other debugging functionality. It supports the original and the 2019 revision of the lc3. It can be extended via plugins in C++.
+
+Package: liblc3-dev
+Architecture: any
+Depends: liblc3
+Homepage: https://github.com/complx-tools/liblc3
+Description: liblc3 is a C++ framework for running and analyzing lc3 assembly code. It supports running and backstepping through instructions along with breakpoints, watchpoints, and other debugging functionality. It supports the original and the 2019 revision of the lc3. It can be extended via plugins in C++.
+
+Package: liblc3-dbg
+Architecture: any
+Depends: liblc3, liblc3-dev
+Homepage: https://github.com/complx-tools/liblc3
 Description: liblc3 is a C++ framework for running and analyzing lc3 assembly code. It supports running and backstepping through instructions along with breakpoints, watchpoints, and other debugging functionality. It supports the original and the 2019 revision of the lc3. It can be extended via plugins in C++.
