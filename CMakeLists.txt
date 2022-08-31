@@ -93,16 +93,17 @@ set(
 add_library(
     lc3
     SHARED
+    ${SRC_FILES}
 )
 
-target_sources(
-    lc3
-    PUBLIC
+#target_sources(
+#    lc3
+#    PUBLIC
         # When 3.23 is standard across ubuntu distros switch to FILE_SET
         # FILE_SET HEADERS BASE_DIRS include FILES ${HEADER_FILES}
-    PRIVATE
-        ${SRC_FILES}
-)
+#    PRIVATE
+#        ${SRC_FILES}
+#)
 
 target_include_directories(
     lc3
