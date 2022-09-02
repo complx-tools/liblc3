@@ -9,3 +9,4 @@ set_and_check(LIBLC3_INCLUDE_DIR "@PACKAGE_INCLUDE_INSTALL_DIR@")
 include("${CMAKE_CURRENT_LIST_DIR}/liblc3.cmake")
 
 set(LIBLC3_LIBRARY liblc3::lc3)
+set(LIBLC3_FOUND ${liblc3_FOUND})
