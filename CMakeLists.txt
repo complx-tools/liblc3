@@ -168,6 +168,14 @@ write_basic_package_version_file(
   COMPATIBILITY ExactVersion
 )
 
+install(
+    FILES
+        ${CMAKE_CURRENT_BINARY_DIR}/liblc3Config.cmake
+        ${CMAKE_CURRENT_BINARY_DIR}/liblc3ConfigVersion.cmake
+    DESTINATION
+        ${CMAKE_INSTALL_LIBDIR}/liblc3/cmake
+)
+
 # uninstall target
 configure_file(
     "${CMAKE_CURRENT_SOURCE_DIR}/cmake/cmake_uninstall.cmake.in"
