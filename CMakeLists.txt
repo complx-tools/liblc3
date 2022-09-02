@@ -138,7 +138,7 @@ install(
 install(
     EXPORT liblc3
     NAMESPACE   liblc3::
-    DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/lc3/cmake
+    DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/liblc3/cmake
     COMPONENT dev
 )
 
@@ -156,11 +156,13 @@ endif(ENABLE_TESTS)
 
 include(CMakePackageConfigHelpers)
 
+set(INCLUDE_INSTALL_DIR ${CMAKE_INSTALL_INCLUDEDIR} CACHE)
+
 configure_package_config_file(
     liblc3Config.cmake.in
     ${CMAKE_CURRENT_BINARY_DIR}/liblc3Config.cmake
-    INSTALL_DESTINATION lib/liblc3/cmake
-    PATH_VARS CMAKE_INSTALL_INCLUDEDIR
+    INSTALL_DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/liblc3/cmake
+    PATH_VARS INCLUDE_INSTALL_DIR
 )
 
 write_basic_package_version_file(
@@ -173,7 +175,7 @@ install(
         ${CMAKE_CURRENT_BINARY_DIR}/liblc3Config.cmake
         ${CMAKE_CURRENT_BINARY_DIR}/liblc3ConfigVersion.cmake
     DESTINATION
-        lib/liblc3/cmake
+        ${CMAKE_INSTALL_DATAROOTDIR}/liblc3/cmake
 )
 
 # uninstall target

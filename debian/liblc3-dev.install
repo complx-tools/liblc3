@@ -1,3 +1,4 @@
 /usr/include
-/usr/share/lc3/cmake/liblc3.cmake
-/usr/lib/liblc3/cmake/*.cmake
+/usr/share/liblc3/cmake/liblc3.cmake
+/usr/share/liblc3/cmake/liblc3Config.cmake
+/usr/share/liblc3/cmake/liblc3ConfigVersion.cmake
