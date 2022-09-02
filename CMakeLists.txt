@@ -154,7 +154,7 @@ if(ENABLE_TESTS)
     add_subdirectory(tests)
 endif(ENABLE_TESTS)
 
-set(SYSCONFIG_INSTALL_DIR etc/liblc3/ ... CACHE )
+set(SYSCONFIG_INSTALL_DIR etc/liblc3/ ... CACHE PATH)
 include(CMakePackageConfigHelpers)
 
 configure_package_config_file(
