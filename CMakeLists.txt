@@ -154,14 +154,13 @@ if(ENABLE_TESTS)
     add_subdirectory(tests)
 endif(ENABLE_TESTS)
 
-set(SYSCONFIG_INSTALL_DIR etc/liblc3/ ... CACHE PATH)
 include(CMakePackageConfigHelpers)
 
 configure_package_config_file(
     liblc3Config.cmake.in
     ${CMAKE_CURRENT_BINARY_DIR}/liblc3Config.cmake
     INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/liblc3/cmake
-    PATH_VARS CMAKE_INSTALL_INCLUDEDIR SYSCONFIG_INSTALL_DIR
+    PATH_VARS CMAKE_INSTALL_INCLUDEDIR
 )
 
 write_basic_package_version_file(
