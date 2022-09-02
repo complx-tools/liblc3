@@ -44,4 +44,4 @@ jobs:
       run: |
         cd build
         ctest -VV
-        cat /usr/local/share/liblc3/liblc3Config.cmake
+        cat /usr/local/share/liblc3/cmake/liblc3Config.cmake
