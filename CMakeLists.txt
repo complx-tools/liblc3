@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 # Ignore warnings about rpath behavior on OS X
 cmake_policy(SET CMP0042 NEW)
-project(liblc3 LANGUAGES CXX)
+project(liblc3 LANGUAGES CXX VERSION 4.20.0)
 include(GNUInstallDirs)
 
 # Add code coverage stuff.
@@ -129,14 +129,14 @@ export(
 
 install(
     TARGETS lc3
-    EXPORT liblc3-export COMPONENT dev
+    EXPORT liblc3 COMPONENT dev
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT runtime
     RUNTIME DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT runtime
     # FILE_SET HEADERS DESTINATION ${CMAKE_INSTALL_INCLUDEDIR} COMPONENT dev
 )
 
 install(
-    EXPORT liblc3-export
+    EXPORT liblc3
     NAMESPACE   liblc3::
     DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/lc3/cmake
     COMPONENT dev
@@ -153,6 +153,21 @@ install(
 if(ENABLE_TESTS)
     add_subdirectory(tests)
 endif(ENABLE_TESTS)
+
+set(SYSCONFIG_INSTALL_DIR etc/liblc3/ CACHE )
+include(CMakePackageConfigHelpers)
+
+configure_package_config_file(
+    liblc3Config.cmake.in
+    ${CMAKE_CURRENT_BINARY_DIR}/liblc3Config.cmake
+    INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/liblc3/cmake
+    PATH_VARS CMAKE_INSTALL_INCLUDEDIR SYSCONFIG_INSTALL_DIR
+)
+
+write_basic_package_version_file(
+  ${CMAKE_CURRENT_BINARY_DIR}/liblc3ConfigVersion.cmake
+  COMPATIBILITY ExactVersion
+)
 
 # uninstall target
 configure_file(
