@@ -156,7 +156,7 @@ endif(ENABLE_TESTS)
 
 include(CMakePackageConfigHelpers)
 
-set(INCLUDE_INSTALL_DIR ${CMAKE_INSTALL_INCLUDEDIR} CACHE)
+set(INCLUDE_INSTALL_DIR ${CMAKE_INSTALL_INCLUDEDIR} CACHE PATH)
 
 configure_package_config_file(
     liblc3Config.cmake.in
