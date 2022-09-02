@@ -1,2 +1,3 @@
 /usr/include
 /usr/share/lc3/cmake/liblc3-export.cmake
+/usr/lib/liblc3/cmake/*.cmake
