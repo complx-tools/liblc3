@@ -22,6 +22,7 @@ endif()
 
 # Additional debug flags
 set(CMAKE_CXX_FLAGS_DEBUG "-g -pg")
+set(CMAKE_DEBUG_POSTFIX d)
 # Install directories
 set(CMAKE_INSTALL_LIBDIR lib CACHE STRING "where to install libraries/plugins")
 set(CMAKE_INSTALL_BINDIR bin CACHE STRING "where to install programs")

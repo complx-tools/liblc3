@@ -7,6 +7,7 @@ set(LIBLC3_VERSION_PATCH "@liblc3_VERSION_PATCH@")
 set_and_check(LIBLC3_INCLUDE_DIR "@PACKAGE_INCLUDE_INSTALL_DIR@")
 
 include("${CMAKE_CURRENT_LIST_DIR}/liblc3.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/liblc3-release.cmake")
 
 set(LIBLC3_LIBRARY liblc3::lc3)
 set(LIBLC3_FOUND ${liblc3_FOUND})
