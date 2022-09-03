@@ -33,7 +33,6 @@ jobs:
       run: |
         mkdir build && cd build
         cmake -DENABLE_TESTS=ON ..
-        cat /usr/local/share/liblc3/cmake/liblc3-release.cmake
 
     - name: Build and Install
       run: sudo cmake --build build --target install
@@ -45,3 +44,4 @@ jobs:
       run: |
         cd build
         ctest -VV
+        cat /usr/local/share/liblc3/cmake/liblc3-release.cmake
