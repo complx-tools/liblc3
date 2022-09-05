@@ -24,3 +24,14 @@ __Special Note__ Let me know if your school is using any portion of the tools pr
   * Ability to define all of the above in the assembly source file for easier debugging (and won't affect the grader)
 * Ability to extend liblc3 via plugins
   * Plugins can add new device registers, traps, send interrupts, and add a new instruction
+
+
+# Installation
+Currently only Ubuntu packages are distributed to install those
+
+$ sudo add-apt-repository ppa:tricksterguy87/complx
+$ sudo apt update
+$ sudo apt-get install -y liblc3
+
+There's also a development package liblc3-dev which includes headers, cmake files for downstream projects.
+
