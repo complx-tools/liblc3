@@ -1,7 +1,7 @@
 liblc3
 ======
 
-Extensible LC-3 Simulator Framework written in C++. Mainly used in CS2110 at Georgia Tech.  Maintained by Brandon (bwhitehead0308 [AT] gmail [DOT] com).
+Extensible LC-3 Simulator backend written in C++. Mainly used in CS2110 at Georgia Tech.  Maintained by Brandon (bwhitehead0308 [AT] gmail [DOT] com).
 
 __Special Note__ Let me know if your school is using any portion of the tools provided here. The tools are subject to change every semester as new features are added or stuff is tweaked based on student feedback. I don't want to break anyone's setup, and would like to keep users in the loop with changes and suggest features.
 
@@ -27,7 +27,7 @@ __Special Note__ Let me know if your school is using any portion of the tools pr
 
 
 # Installation
-Currently only Ubuntu packages are distributed to install those
+Currently only Ubuntu packages are distributed to install those,
 
 $ sudo add-apt-repository ppa:tricksterguy87/complx
 $ sudo apt update
